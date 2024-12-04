@@ -13,7 +13,10 @@ from mmseg.registry import RUNNERS
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
-    parser.add_argument('config', help='train config file path')
+    # parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation/configs/deeplabv3plus/deeplabv3plus_r50-d8_4xb4-20k_voc12aug-512x512.py", help='train config file path')
+    # parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation\configs\segformer/segformer_mit-b5_8xb2-160k_ade20k-512x512_test.py", help='train config file path')
+    parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation\configs\segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512.py", help='train config file path')
+    # parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(
         '--resume',

@@ -172,8 +172,13 @@ def show_result_pyplot(model: BaseSegmentor,
         save_dir=save_dir,
         alpha=opacity)
     visualizer.dataset_meta = dict(
-        classes=model.dataset_meta['classes'],
-        palette=model.dataset_meta['palette'])
+        # classes=model.dataset_meta['classes'],
+        # palette=model.dataset_meta['palette'])
+
+        classes = ('background', 'tape_edge'),
+        palette = [[255, 0, 0], [0, 0, 255]])
+
+
     visualizer.add_datasample(
         name=title,
         image=image,

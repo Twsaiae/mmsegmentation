@@ -1,6 +1,9 @@
 _base_ = [
-    '../_base_/models/segformer_mit-b0.py', '../_base_/datasets/ade20k.py',
-    '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
+    '../_base_/models/segformer_mit-b0.py',
+    '../_base_/datasets/pascal_voc12.py',
+    # '../_base_/datasets/ade20k.py',
+    '../_base_/default_runtime.py',
+    '../_base_/schedules/schedule_160k.py'
 ]
 crop_size = (512, 512)
 data_preprocessor = dict(size=crop_size)

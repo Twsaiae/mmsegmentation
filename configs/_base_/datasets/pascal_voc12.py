@@ -1,6 +1,7 @@
 # dataset settings
 dataset_type = 'PascalVOCDataset'
-data_root = 'data/VOCdevkit/VOC2012'
+# data_root = 'data/VOCdevkit/VOC2012'
+data_root = 'D:\interesting_projects\mmsegmentation\datasets'
 crop_size = (512, 512)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
@@ -48,8 +49,8 @@ train_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='JPEGImages', seg_map_path='SegmentationClass'),
-        ann_file='ImageSets/Segmentation/train.txt',
+            img_path='images', seg_map_path='labels'),
+        ann_file='D:\interesting_projects\mmsegmentation\datasets/train.txt',
         pipeline=train_pipeline))
 val_dataloader = dict(
     batch_size=1,
@@ -60,8 +61,8 @@ val_dataloader = dict(
         type=dataset_type,
         data_root=data_root,
         data_prefix=dict(
-            img_path='JPEGImages', seg_map_path='SegmentationClass'),
-        ann_file='ImageSets/Segmentation/val.txt',
+            img_path='images', seg_map_path='labels'),
+        ann_file='D:\interesting_projects\mmsegmentation\datasets/val.txt',
         pipeline=test_pipeline))
 test_dataloader = val_dataloader
 
