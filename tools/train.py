@@ -9,13 +9,22 @@ from mmengine.logging import print_log
 from mmengine.runner import Runner
 
 from mmseg.registry import RUNNERS
-
+os.environ['CUDA_LAUNCH_BLOCKING']='1'
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a segmentor')
+
+
+    # 4xb4是4个gpu每个gpu4张图
+
     # parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation/configs/deeplabv3plus/deeplabv3plus_r50-d8_4xb4-20k_voc12aug-512x512.py", help='train config file path')
     # parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation\configs\segformer/segformer_mit-b5_8xb2-160k_ade20k-512x512_test.py", help='train config file path')
-    parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation\configs\segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512.py", help='train config file path')
+    # parser.add_argument('--config',default="D:\interesting_projects\mmsegmentation\configs\segformer/segformer_mit-b0_8xb2-160k_ade20k-512x512.py", help='train config file path')
+    # parser.add_argument('--config',default=r"D:\interesting_projects\mmsegmentation\configs\bisenetv2/bisenetv2_fcn_4xb4-160k_cityscapes-1024x1024.py", help='train config file path')
+    # parser.add_argument('--config',default=r"D:\interesting_projects\mmsegmentation\configs\san/san-vit-l14_voc12aug-640x640.py", help='train config file path')
+    # parser.add_argument('--config',default=r"D:\interesting_projects\mmsegmentation\configs\san/san-vit-b16_voc12aug-640x640.py", help='train config file path')
+    # parser.add_argument('--config',default=r"D:\interesting_projects\mmsegmentation\configs\pidnet/pidnet-l_2xb6-120k_1024x1024-cityscapes.py", help='train config file path')
+    parser.add_argument('--config',default=r"D:\interesting_projects\mmsegmentation\configs\ddrnet/ddrnet_23-slim_in1k-pre_2xb6-120k_cityscapes-1024x1024.py", help='train config file path')
     # parser.add_argument('config', help='train config file path')
     parser.add_argument('--work-dir', help='the dir to save logs and models')
     parser.add_argument(

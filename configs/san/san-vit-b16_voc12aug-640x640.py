@@ -1,19 +1,24 @@
 _base_ = [
     '../_base_/models/san_vit-b16.py',
-    '../_base_/datasets/pascal_voc12_aug.py', '../_base_/default_runtime.py',
+    # '../_base_/datasets/pascal_voc12_aug.py',
+    '../_base_/datasets/pascal_voc12.py',
+    '../_base_/default_runtime.py',
     '../_base_/schedules/schedule_160k.py'
 ]
 crop_size = (640, 640)
 
+# metainfo = dict(
+#     classes=('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
+#              'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
+#              'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor'),
+#     palette=[[128, 0, 0], [0, 128, 0], [128, 128, 0], [0, 0, 128],
+#              [128, 0, 128], [0, 128, 128], [128, 128, 128], [64, 0, 0],
+#              [192, 0, 0], [64, 128, 0], [192, 128, 0], [64, 0, 128],
+#              [192, 0, 128], [64, 128, 128], [192, 128, 128], [0, 64, 0],
+#              [128, 64, 0], [0, 192, 0], [128, 192, 0], [0, 64, 128]])
 metainfo = dict(
-    classes=('aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
-             'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
-             'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor'),
-    palette=[[128, 0, 0], [0, 128, 0], [128, 128, 0], [0, 0, 128],
-             [128, 0, 128], [0, 128, 128], [128, 128, 128], [64, 0, 0],
-             [192, 0, 0], [64, 128, 0], [192, 128, 0], [64, 0, 128],
-             [192, 0, 128], [64, 128, 128], [192, 128, 128], [0, 64, 0],
-             [128, 64, 0], [0, 192, 0], [128, 192, 0], [0, 64, 128]])
+    classes=('background', 'tape_edge'),
+    palette=[[0, 0, 0], [1, 1, 1]])
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='ResizeShortestEdge', scale=crop_size, max_size=2560),
@@ -33,7 +38,8 @@ data_preprocessor = dict(
     test_cfg=dict(size_divisor=32))
 model = dict(
     data_preprocessor=data_preprocessor,
-    pretrained='pretrain/vit_base_patch16_224.pth',
+    # pretrained='pretrain/vit_base_patch16_224.pth',
+    pretrained='D:\interesting_projects\mmsegmentation\configs\san/san-vit-b16_20230906-fd0a7684.pth',
     text_encoder=dict(dataset_name='voc'),
     decode_head=dict(num_classes=20))
 

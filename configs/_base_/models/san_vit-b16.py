@@ -1,6 +1,6 @@
 # model settings
-norm_cfg = dict(type='SyncBN', requires_grad=True)
-
+# norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='BN', requires_grad=True)
 data_preprocessor = dict(
     type='SegDataPreProcessor',
     mean=[122.7709, 116.7460, 104.0937],
@@ -11,11 +11,13 @@ data_preprocessor = dict(
     size_divisor=640,
     test_cfg=dict(size_divisor=32))
 
-num_classes = 171
+# num_classes = 171
+num_classes = 2
 model = dict(
     type='MultimodalEncoderDecoder',
     data_preprocessor=data_preprocessor,
-    pretrained='pretrain/clip_vit_base_patch16_224.pth',
+    # pretrained='pretrain/clip_vit_base_patch16_224.pth',
+    # pretrained='D:\interesting_projects\mmsegmentation\configs\san/san-vit-b16_20230906-fd0a7684.pth',
     asymetric_input=True,
     encoder_resolution=0.5,
     image_encoder=dict(

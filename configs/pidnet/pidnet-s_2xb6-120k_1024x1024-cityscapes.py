@@ -1,15 +1,22 @@
 _base_ = [
-    '../_base_/datasets/cityscapes_1024x1024.py',
+    # '../_base_/datasets/cityscapes_1024x1024.py',
+    '../_base_/datasets/pascal_voc12.py',
     '../_base_/default_runtime.py'
 ]
 
 # The class_weight is borrowed from https://github.com/openseg-group/OCNet.pytorch/issues/14 # noqa
 # Licensed under the MIT License
-class_weight = [
-    0.8373, 0.918, 0.866, 1.0345, 1.0166, 0.9969, 0.9754, 1.0489, 0.8786,
-    1.0023, 0.9539, 0.9843, 1.1116, 0.9037, 1.0865, 1.0955, 1.0865, 1.1529,
-    1.0507
-]
+# class_weight = [
+#     0.8373, 0.918, 0.866, 1.0345, 1.0166, 0.9969, 0.9754, 1.0489, 0.8786,
+#     1.0023, 0.9539, 0.9843, 1.1116, 0.9037, 1.0865, 1.0955, 1.0865, 1.1529,
+#     1.0507
+# ]
+# class_weight = [
+#     0.8373, 0.918, 0.866, 1.0345, 1.0166, 0.9969, 0.9754, 1.0489, 0.8786,
+#     1.0023, 0.9539, 0.9843, 1.1116, 0.9037, 1.0865, 1.0955, 1.0865, 1.1529,
+#     1.0507
+# ]
+class_weight=[0.0123,1.9877]
 checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/pidnet/pidnet-s_imagenet1k_20230306-715e6273.pth'  # noqa
 crop_size = (1024, 1024)
 data_preprocessor = dict(
@@ -20,7 +27,8 @@ data_preprocessor = dict(
     pad_val=0,
     seg_pad_val=255,
     size=crop_size)
-norm_cfg = dict(type='SyncBN', requires_grad=True)
+# norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
@@ -39,7 +47,7 @@ model = dict(
         type='PIDHead',
         in_channels=128,
         channels=128,
-        num_classes=19,
+        num_classes=2,
         norm_cfg=norm_cfg,
         act_cfg=dict(type='ReLU', inplace=True),
         align_corners=True,
